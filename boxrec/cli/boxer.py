@@ -11,5 +11,6 @@ def add_subcommand_boxer(subparsers):
 
 
 def boxer(args):
-    boxer = boxer_parser(args.id)
-    print(boxer)
+    boxer_data = boxer_parser(args.id)
+    with open(args.filename + '.json', 'w') as file:
+        file.write(boxer_data)
