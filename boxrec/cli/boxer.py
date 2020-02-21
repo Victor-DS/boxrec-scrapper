@@ -1,3 +1,6 @@
+from boxrec.parser.boxer_parser import get_data as boxer_parser
+
+
 def add_subcommand_boxer(subparsers):
     parser = subparsers.add_parser('boxer', help='Scrap a boxer\'s data')
     parser.add_argument('--id', '-i', type=int, dest='id', required=True,
@@ -8,4 +11,6 @@ def add_subcommand_boxer(subparsers):
 
 
 def boxer(args):
-    print('boxer', args.id, args.filename)
+    boxer_data = boxer_parser(args.id)
+    with open(args.filename + '.json', 'w') as file:
+        file.write(boxer_data)
