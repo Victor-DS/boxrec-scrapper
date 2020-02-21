@@ -1,3 +1,6 @@
+from boxrec.parser.boxer_parser import get_data as boxer_parser
+
+
 def add_subcommand_boxer(subparsers):
     parser = subparsers.add_parser('boxer', help='Scrap a boxer\'s data')
     parser.add_argument('--id', '-i', type=int, dest='id', required=True,
@@ -8,4 +11,5 @@ def add_subcommand_boxer(subparsers):
 
 
 def boxer(args):
-    print('boxer', args.id, args.filename)
+    boxer = boxer_parser(args.id)
+    print(boxer)
