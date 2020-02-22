@@ -1,7 +1,5 @@
-import logging
 import argparse
-
-log = logging.getLogger(__name__)
+from boxrec.cli.boxer import add_subcommand_boxer
 
 
 def main(args=None):
@@ -9,7 +7,11 @@ def main(args=None):
                                      description='A CLI to scrap data from BoxRec')
     subparsers = parser.add_subparsers(help='Sub-commands')
 
-    from .boxer import add_subcommand_boxer
+    parser.add_argument(
+        '--loglevel', default='info', help='Log level',
+        choices=['debug', 'info', 'warning', 'error', 'critical'],
+    )
+
     add_subcommand_boxer(subparsers)
 
     args = parser.parse_args(args)

@@ -1,14 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-import json
 
 
 def get_data(boxer_id):
     boxrec_url = build_url(boxer_id)
     content = get_url_content(boxrec_url)
-    data = get_boxer_data(content)
-    boxer = {boxer_id: data}
-    return json.dumps(boxer)
+    return get_boxer_data(content)
 
 
 def get_boxer_data(content):
